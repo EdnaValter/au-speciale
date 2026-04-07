@@ -95,7 +95,7 @@ export default function Home() {
 
   const handleSelectOption = (optionId: string) => {
     if (currentProgress.submitted) return;
-    setState((prev) => ({
+    setState((prev: AppState) => ({
       ...prev,
       answersByScenarioId: {
         ...prev.answersByScenarioId,
@@ -109,7 +109,7 @@ export default function Home() {
 
   const handleReasonChange = (value: string) => {
     if (currentProgress.submitted) return;
-    setState((prev) => ({
+    setState((prev: AppState) => ({
       ...prev,
       answersByScenarioId: {
         ...prev.answersByScenarioId,
@@ -123,7 +123,7 @@ export default function Home() {
 
   const handleSubmit = () => {
     if (!currentProgress.selectedOptionId || currentProgress.reason.trim().length === 0) return;
-    setState((prev) => ({
+    setState((prev: AppState) => ({
       ...prev,
       answersByScenarioId: {
         ...prev.answersByScenarioId,
@@ -136,14 +136,14 @@ export default function Home() {
   };
 
   const goBack = () => {
-    setState((prev) => ({
+    setState((prev: AppState) => ({
       ...prev,
       currentScenarioIndex: Math.max(0, prev.currentScenarioIndex - 1)
     }));
   };
 
   const goNext = () => {
-    setState((prev) => ({
+    setState((prev: AppState) => ({
       ...prev,
       currentScenarioIndex: Math.min(scenarios.length - 1, prev.currentScenarioIndex + 1)
     }));
@@ -167,7 +167,7 @@ export default function Home() {
           scenarios={scenarios}
           answersByScenarioId={state.answersByScenarioId}
           onReset={resetProgress}
-          onReview={() => setState((prev) => ({ ...prev, currentScenarioIndex: 0 }))}
+          onReview={() => setState((prev: AppState) => ({ ...prev, currentScenarioIndex: 0 }))}
         />
       ) : (
         <>
